@@ -2,12 +2,28 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Mark Manager{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="ui fixed inverted menu">
+            <div class="ui container">
+                <a href="#" class="header item">HR manager</a>
+                <a href="{{ path('mark_list') }}" class="item">Marks</a>
+            </div>
+        </div>
+        <div class="ui main text container">
+        {% for type, flash_messages in app.session.flashBag.all %}
+            {% for flash_message in flash_messages %}
+                <div class="ui {{ type }} message">
+                    <p>{{ flash_message }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        </div>
+        {% block content %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>

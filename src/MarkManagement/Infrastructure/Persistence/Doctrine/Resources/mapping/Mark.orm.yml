@@ -1,0 +1,20 @@
+Pb\MarkManagement\Domain\Mark:
+    type: entity
+    table: mark
+    fields:
+        id:
+            id: true
+            type: string
+            generator:
+                strategy: NONE
+        value:
+            type: float
+            nullable: false
+        coefficient:
+            type: integer
+        label:
+            type: string
+        student:
+            type: string
+        domain:
+            type: string

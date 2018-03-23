@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1 class="ui dividing header">Mark</h1>
+    <a href="{{ path('mark_enter') }}" class="ui primary button">
+        New mark
+    </a>
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th>Value</th>
+            <th>Student</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for mark in marks %}
+            <tr>
+                <td>{{ mark.value }}</td>
+                <td>{{ mark.student }}</td>
+                <td>
+                    <a href="#" class="ui button edit">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {{ pagerfanta(marks, 'semantic_ui_translated', { 'omitFirstPage': true }) }}
+{% endblock content %}

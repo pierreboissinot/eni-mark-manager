@@ -42,8 +42,8 @@ doctrine:
         driver:   "%database_driver%"
         host:     "%database_host%"
         port:     "%database_port%"
-        dbname: '%env(DATABASE_NAME)%'
-        url: '%env(HEROKU_POSTGRES_DATABASE_URL)%'
+        dbname: '%env(resolve:DATABASE_NAME)%'
+        url: '%env(resolve:HEROKU_POSTGRES_DATABASE_URL)%'
         user:     "%database_user%"
         password: "%database_password%"
         server_version: "%database_server_version%"

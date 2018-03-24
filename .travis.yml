@@ -1,0 +1,27 @@
+language: php
+sudo: false
+services:
+- postgresql
+cache:
+  directories:
+  - "$HOME/.composer/cache/files"
+matrix:
+  fast_finish: true
+  include:
+  - php: 7.1
+env:
+- SYMFONY_VERSION="3.4.*" DB=mysql
+before-install:
+- composer self-update
+install:
+- cp .env.travis.dist .env
+- composer install
+- php bin/console doctrine:database:create --env=test
+- php bin/console doctrine:schema:create --env=test
+notifications: 
+email: perso@pierreboissinot.me
+deploy:
+  provider: heroku
+  api_key:
+    secure: eYi+t9GeQggkZV3oZaYZ47c/yh3N3UATbKVYNtJJKQJt00eSC1Ckz6C+I1Jske4uZ5ir4YWigu7OxE7+1hqy5/q4xC8O13mtJ76djw8hVS7AzSOSttAgfkUxJOZg0O6a4NlGs+ukCYpwUZJg7/vYfWceJ4rKhEv2znRlU/bxH/eZhxQuP8n+8gNE9gKxRdXxN44rMQR1SpP6qbgNinXAqzAhtVZ2sKVIzqiInx1Js2kAp7eNao1ZNCMxrUyijW1BVkzgzetW3yqSm0am0G4Bz3mI6botygcX585WGJO4qofVqzZg1LtRKeV1OLrYaHUROcnw2wYl81QZeDj7d2wIugPQaU6g5+qfSOIVheGw9zLur3llBSNcSSoeiZlZ5cjT4kl0ZTAUZqMWAJlY/LPN0tMZGfB+8LTTLs4mgaL+xB5fqvb03lN6VlSfIAt9IHXy5X5Ou8jDsFa9sWC8qy/Rj6Y8biYpzxjrCr9iVDCwsQ29fr0tKbrjuDUowif6VanEBWG34OQuu7Wa1rB+m1sN7jmrGBeWMx/ngz5ZQj9CWk5d7hdO6SJRrDRlyW3NFLu0wONzghjNTy/JiJK3TyJ79V+D/WK+bJrhn8XZcIG7BmCkNtyLw90Y6D/QiNGuSpVeoRBZDBXpuwFRhrCycWNVJiyWcCDZ07sncBguT9S5Bw0=
+  app: eni-mark-manager

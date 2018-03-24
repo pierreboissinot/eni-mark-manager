@@ -10,7 +10,7 @@ matrix:
   include:
   - php: 7.1
 env:
-- SYMFONY_VERSION="3.4.*" DB=postgresql
+- SYMFONY_VERSION="4.0.*" DB=postgresql
 before-install:
 - composer self-update
 install:

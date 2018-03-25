@@ -19,6 +19,7 @@ hooks:
     build: |
         rm web/app_dev.php
         bin/console --env=prod assets:install --no-debug
+        bin/console --env=prod doctrine:migrations:migrate --no-interaction
     deploy: |
         bin/console --env=prod cache:clear
 

@@ -1,5 +1,6 @@
 Pb\MarkManagement\Domain\Subject:
     type: entity
+    table: subject
     fields:
         id:
             id: true
@@ -15,7 +16,3 @@ Pb\MarkManagement\Domain\Subject:
             joinColumn:
                 name: domain_id
                 referencedColumnName: id
-    oneToMany:
-        marks:
-            targetEntity: Mark
-            mappedBy: subject

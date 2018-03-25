@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Pb\MarkManagement\Domain\ReadModel;
 
 use Pb\MarkManagement\Domain\Student;
+use Pb\MarkManagement\Domain\Subject;
 
 final class MarkList
 {
@@ -22,8 +23,8 @@ final class MarkList
     /** @var Student */
     private $student;
 
-    /** @var string */
-    private $domain;
+    /** @var Subject */
+    private $subject;
 
     /**
      * MarkList constructor.
@@ -32,16 +33,16 @@ final class MarkList
      * @param int $coefficient
      * @param string $label
      * @param Student $student
-     * @param string $domain
+     * @param Subject $subject
      */
-    public function __construct(string $id, float $value, int $coefficient, string $label, string $student, string $domain)
+    public function __construct(string $id, float $value, int $coefficient, string $label, Student $student, Subject $subject)
     {
         $this->id = $id;
         $this->value = $value;
         $this->coefficient = $coefficient;
         $this->label = $label;
         $this->student = $student;
-        $this->domain = $domain;
+        $this->subject = $subject;
     }
 
     /**
@@ -79,19 +80,16 @@ final class MarkList
     /**
      * @return Student
      */
-    public function getStudent(): string
+    public function getStudent(): Student
     {
         return $this->student;
     }
 
     /**
-     * @return string
+     * @return Subject
      */
-    public function getDomain(): string
+    public function getSubject(): Subject
     {
-        return $this->domain;
+        return $this->subject;
     }
-
-
-
 }

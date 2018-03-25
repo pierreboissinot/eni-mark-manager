@@ -6,6 +6,7 @@ namespace Pb\MarkManagement\Application\Command;
 
 
 use Pb\MarkManagement\Domain\Student;
+use Pb\MarkManagement\Domain\Subject;
 use SimpleBus\Message\Name\NamedMessage;
 
 class EnterMark implements NamedMessage
@@ -18,9 +19,11 @@ class EnterMark implements NamedMessage
 
     public $coefficient;
 
+    /** @var string */
     public $label;
 
-    public $domain;
+    /** @var Subject */
+    public $subject;
 
     /**
      * The name of this particular type of message.

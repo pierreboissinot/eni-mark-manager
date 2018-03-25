@@ -7,10 +7,10 @@ namespace Pb\MarkManagement\Infrastructure\Persistence\Doctrine;
 use Doctrine\ORM\EntityManagerInterface;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
-use Pb\MarkManagement\Domain\Mark;
-use Pb\MarkManagement\Domain\ReadModel\MarkList;
+use Pb\MarkManagement\Domain\Domain;
+use Pb\MarkManagement\Domain\ReadModel\DomainList;
 
-final class ListMarkQuery
+final class ListDomainQuery
 {
     /**
      * @var EntityManagerInterface
@@ -30,14 +30,13 @@ final class ListMarkQuery
         $queryBuilder = $this->entityManager->createQueryBuilder()
             ->select(
                 sprintf(
-                    'NEW %s(mark.id, mark.value, mark.coefficient, mark.label, mark.student, subject.label)',
-                    MarkList::class
+                    'NEW %s(domain.id, domain.label)',
+                    DomainList::class
                 )
             )
-            ->from(Mark::class, 'mark')
-            ->leftJoin('mark.subject', 'subject')
+            ->from(Domain::class, 'domain')
             ->getQuery();
-        $marks = new Pagerfanta(new DoctrineORMAdapter($queryBuilder, true, false));
+        $marks = new Pagerfanta(new DoctrineORMAdapter($queryBuilder, false, false));
         $marks->setCurrentPage($page);
         $marks->setMaxPerPage($limit);
         return $marks;

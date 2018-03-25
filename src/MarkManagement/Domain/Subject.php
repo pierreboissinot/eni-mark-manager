@@ -42,4 +42,11 @@ class Subject implements SubjectInterface
     {
         return new self($identifier, $label, $domain);
     }
+
+    public function __toString()
+    {
+        return $this->label;
+    }
+
+
 }

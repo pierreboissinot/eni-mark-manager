@@ -22,6 +22,7 @@
     "require": {
         "php": ">=7.0",
         "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/doctrine-migrations-bundle": "^1.3",
         "doctrine/orm": "^2.5",
         "friendsofphp/php-cs-fixer": "^2.10",
         "incenteev/composer-parameter-handler": "^2.0",

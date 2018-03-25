@@ -16,5 +16,10 @@ Pb\MarkManagement\Domain\Mark:
             type: string
         student:
             type: string
-        domain:
-            type: string
+    manyToOne:
+      subject:
+        targetEntity: Subject
+        inversedBy: marks
+        joinColumn:
+          name: subject_id
+          referencedColumnName: id

@@ -13,12 +13,12 @@ interface MarkInterface
      * @param UuidInterface $identifier
      * @param float $value
      * @param int $coefficient
-     * @param Student $forStudent
+     * @param string $forStudent
      * @param string $label
-     * @param string $forDomain
+     * @param SubjectInterface $forSubject
      * @return mixed
      */
-    public static  function enter(UuidInterface $identifier, float $value, int $coefficient, string $forStudent, string $label, string $forDomain);
+    public static  function enter(UuidInterface $identifier, float $value, int $coefficient, string $forStudent, string $label, SubjectInterface $forSubject);
 
     /**
      * Editer une note

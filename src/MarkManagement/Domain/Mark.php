@@ -3,13 +3,11 @@ declare(strict_types=1);
 
 namespace Pb\MarkManagement\Domain;
 
-
-use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 final class Mark implements MarkInterface
 {
-    /** @var Uuid */
+    /** @var UuidInterface */
     private $id;
 
     /** @var float */
@@ -24,10 +22,10 @@ final class Mark implements MarkInterface
     /** @var Student */
     private $student;
 
-    /** @var Domain */
-    private $domain;
+    /** @var SubjectInterface */
+    private $subject;
 
-    private function __construct(UuidInterface $identifier, float $value, int $coefficient, string $student, string $label, string $domain)
+    private function __construct(UuidInterface $identifier, float $value, int $coefficient, string $student, string $label, SubjectInterface $subject)
     {
         if ($value > 20) {
             throw new \OutOfRangeException(
@@ -39,15 +37,15 @@ final class Mark implements MarkInterface
         $this->coefficient = $coefficient;
         $this->label = $label;
         $this->student = $student;
-        $this->domain = $domain;
+        $this->subject = $subject;
     }
 
     /**
      * @inheritdoc
      */
-    public static function enter(UuidInterface $identifier, float $value, int $coefficient, string $forStudent, string $label, string $forDomain)
+    public static function enter(UuidInterface $identifier, float $value, int $coefficient, string $forStudent, string $label, SubjectInterface $forSubject)
     {
-        return new self($identifier, $value, $coefficient, $forStudent, $label, $forDomain);
+        return new self($identifier, $value, $coefficient, $forStudent, $label, $forSubject);
     }
 
     /**

@@ -1,0 +1,14 @@
+Pb\MarkManagement\Domain\Domain:
+    type: entity
+    fields:
+        id:
+            id: true
+            type: string
+            generator:
+                strategy: NONE
+        label:
+            type: string
+    oneToMany:
+        subjects:
+            targetEntity: Subject
+            mappedBy: domain

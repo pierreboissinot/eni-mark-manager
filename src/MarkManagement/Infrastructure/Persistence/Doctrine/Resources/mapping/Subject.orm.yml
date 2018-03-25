@@ -1,0 +1,21 @@
+Pb\MarkManagement\Domain\Subject:
+    type: entity
+    fields:
+        id:
+            id: true
+            type: string
+            generator:
+                strategy: NONE
+        label:
+            type: string
+    manyToOne:
+        domain:
+            targetEntity: Domain
+            inversedBy: subjects
+            joinColumn:
+                name: domain_id
+                referencedColumnName: id
+    oneToMany:
+        marks:
+            targetEntity: Mark
+            mappedBy: subject

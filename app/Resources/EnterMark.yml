@@ -1,0 +1,4 @@
+Pb\MarkManagement\Application\Command\EnterMark:
+    properties:
+        value:
+            - NotBlank: ~

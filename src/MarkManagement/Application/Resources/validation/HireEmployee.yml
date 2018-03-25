@@ -1,4 +1,0 @@
-Al\ResourceManagement\Application\Employee\Command\HireEmployee:
-    properties:
-        value:
-            - NotBlank: ~

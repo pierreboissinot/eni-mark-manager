@@ -1,7 +1,18 @@
 homepage:
     path: /
     defaults:
-        _controller: AppBundle:Default:index
+        _controller: Pb\MarkManagement\Infrastructure\UserInterface\Web\HomeController::indexAction
+
+
+domain_list:
+    path: /domain/list
+    defaults:
+        _controller: Pb\MarkManagement\Infrastructure\UserInterface\Web\DomainController::listAction
+
+domain_enter:
+    path: /domain/enter
+    defaults:
+      _controller: Pb\MarkManagement\Infrastructure\UserInterface\Web\DomainController::enterAction
 
 mark_list:
     path: /mark/list

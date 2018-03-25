@@ -22,10 +22,10 @@ final class Mark implements MarkInterface
     /** @var Student */
     private $student;
 
-    /** @var SubjectInterface */
+    /** @var Subject */
     private $subject;
 
-    private function __construct(UuidInterface $identifier, float $value, int $coefficient, string $student, string $label, SubjectInterface $subject)
+    private function __construct(UuidInterface $identifier, float $value, int $coefficient, string $student, string $label, Subject $subject)
     {
         if ($value > 20) {
             throw new \OutOfRangeException(
@@ -43,7 +43,7 @@ final class Mark implements MarkInterface
     /**
      * @inheritdoc
      */
-    public static function enter(UuidInterface $identifier, float $value, int $coefficient, string $forStudent, string $label, SubjectInterface $forSubject)
+    public static function enter(UuidInterface $identifier, float $value, int $coefficient, string $forStudent, string $label, Subject $forSubject)
     {
         return new self($identifier, $value, $coefficient, $forStudent, $label, $forSubject);
     }

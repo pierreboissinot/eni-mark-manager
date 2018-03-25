@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'form.html.twig' %}
+
+{% block content %}
+    <h1 class="ui dividing header">Domaine</h1>
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_widget(form) }}
+    <a href="{{ path('domain_list') }}" class="ui button">
+        Retour à la list
+    </a>
+    <input type="submit"
+           value="Valider"
+           class="ui primary button" />
+    {{ form_end(form) }}
+{% endblock %}

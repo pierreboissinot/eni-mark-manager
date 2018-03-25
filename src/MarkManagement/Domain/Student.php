@@ -8,6 +8,8 @@ use Ramsey\Uuid\UuidInterface;
 
 final class Student implements StudentInterface
 {
+    /** @var string */
+    private $lastName;
 
     /** @inheritdoc */
     public function enterMarks(
@@ -30,4 +32,11 @@ final class Student implements StudentInterface
     {
         // TODO: Implement signInToRetake() method.
     }
+
+    public function __toString()
+    {
+        return $this->lastName;
+    }
+
+
 }

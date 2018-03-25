@@ -4,13 +4,13 @@ namespace Pb\MarkManagement\Infrastructure\Persistence\Doctrine;
 
 
 use Doctrine\ORM\EntityManagerInterface;
-use Pb\MarkManagement\Domain\Exception\NonExistingMark;
-use Pb\MarkManagement\Domain\Mark;
-use Pb\MarkManagement\Domain\MarkInterface;
-use Pb\MarkManagement\Domain\MarkRepositoryInterface;
+use Pb\MarkManagement\Domain\Domain;
+use Pb\MarkManagement\Domain\DomainInterface;
+use Pb\MarkManagement\Domain\DomainRepositoryInterface;
+use Pb\MarkManagement\Domain\Exception\NonExistingDomain;
 use Ramsey\Uuid\Uuid;
 
-class MarkRepository implements MarkRepositoryInterface
+class DomainRepository implements DomainRepositoryInterface
 {
     /**
      * @var EntityManagerInterface
@@ -24,31 +24,31 @@ class MarkRepository implements MarkRepositoryInterface
 
     /**
      * @param Uuid $identifier
-     * @return Mark|object
-     * @throws NonExistingMark
+     * @return Domain|object
+     * @throws NonExistingDomain
      */
     public function get(Uuid $identifier)
     {
         $mark = $this->entityManager->find(
-            Mark::class,
+            Domain::class,
             $identifier->toString()
         );
         if (null === $mark) {
-            throw new NonExistingMark($identifier->toString());
+            throw new NonExistingDomain($identifier->toString());
         }
 
         return $mark;
     }
 
-    public function add(MarkInterface $mark)
+    public function add(DomainInterface $domain)
     {
-        $this->entityManager->persist($mark);
+        $this->entityManager->persist($domain);
         $this->entityManager->flush();
     }
 
-    public function remove(MarkInterface $mark)
+    public function remove(DomainInterface $domain)
     {
-        $this->entityManager->remove($mark);
+        $this->entityManager->remove($domain);
         $this->entityManager->flush();
     }
 }

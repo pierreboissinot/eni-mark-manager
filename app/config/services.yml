@@ -6,6 +6,16 @@ parameters:
 services:
 
     ### Repository
+    pb.domain.repository:
+            class: 'Pb\MarkManagement\Infrastructure\Persistence\Doctrine\DomainRepository'
+            arguments:
+                - '@doctrine.orm.entity_manager'
+
+    pb.domain.query:
+        class: 'Pb\MarkManagement\Infrastructure\Persistence\Doctrine\ListDomainQuery'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+
     pb.mark.repository:
         class: 'Pb\MarkManagement\Infrastructure\Persistence\Doctrine\MarkRepository'
         arguments:
@@ -17,6 +27,12 @@ services:
             - '@doctrine.orm.entity_manager'
 
     ### Command handler
+    pb.domain.handler.enter:
+        class: 'Pb\MarkManagement\Application\Handler\EnterDomainHandler'
+        arguments:
+            - '@pb.domain.repository'
+        tags:
+            - { name: command_handler, handles: enter_domain}
     pb.mark.handler.enter:
         class: 'Pb\MarkManagement\Application\Handler\EnterMarkHandler'
         arguments:

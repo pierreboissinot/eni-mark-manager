@@ -3,7 +3,9 @@
 
 namespace Pb\MarkManagement\Infrastructure\UserInterface\Web;
 
+use Doctrine\ORM\EntityRepository;
 use Pb\MarkManagement\Application\Command\EnterMark;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -21,7 +23,14 @@ class MarkType extends AbstractType
                 $form->add('value');
                 $form->add('student');
                 $form->add('coefficient');
-                $form->add('domain');
+                $form->add('subject', EntityType::class, [
+                    'class' => 'Pb\MarkManagement\Domain\Subject',
+                    'choice_label' => 'label',
+                    'query_builder' => function(EntityRepository $repository) {
+                        return $repository->createQueryBuilder('s')
+                            ->orderBy('s.label', 'ASC');
+                    }
+                ]);
                 $form->add('label');
             }
         });

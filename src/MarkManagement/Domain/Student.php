@@ -4,12 +4,34 @@ declare(strict_types=1);
 namespace Pb\MarkManagement\Domain;
 
 
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 final class Student implements StudentInterface
 {
+
+    /** @var Uuid */
+    private $id;
+
     /** @var string */
     private $lastName;
+
+    /** @var \ArrayAccess */
+    private $marks;
+
+    /**
+     * Student constructor.
+     * @param Uuid $id
+     * @param string $lastName
+     * @param \ArrayAccess $marks
+     */
+    public function __construct(Uuid $id, string $lastName, \ArrayAccess $marks)
+    {
+        $this->id = $id;
+        $this->lastName = $lastName;
+        $this->marks = $marks;
+    }
+
 
     /** @inheritdoc */
     public function enterMarks(

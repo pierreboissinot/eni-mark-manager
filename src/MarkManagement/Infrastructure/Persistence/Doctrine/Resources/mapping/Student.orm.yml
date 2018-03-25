@@ -1,0 +1,14 @@
+Pb\MarkManagement\Domain\Student:
+    type: entity
+    fields:
+        id:
+            id: true
+            type: string
+            generator:
+                strategy: NONE
+        lastName:
+            type: string
+    oneToMany:
+        marks:
+            targetEntity: Mark
+            mappedBy: student

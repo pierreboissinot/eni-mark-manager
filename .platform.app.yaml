@@ -18,10 +18,15 @@ variables:
 hooks:
     build: |
         rm web/app_dev.php
-        bin/console --env=prod assets:install --no-debug
-        bin/console --env=prod doctrine:migrations:migrate --no-interaction
+        rm web/app_test.php
+        rm web/app_test_cached.php
+        rm -rf var/cache/*
+        php bin/console --env=prod --no-debug --ansi cache:clear --no-warmup
+        php bin/console --env=prod --no-debug --ansi cache:warmup
+        php bin/console --env=prod --no-debug --ansi assets:install
     deploy: |
-        bin/console --env=prod cache:clear
+        rm -rf var/cache/*
+        php bin/console --env=prod doctrine:migrations:migrate --no-interaction
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed

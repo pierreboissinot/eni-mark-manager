@@ -14,6 +14,10 @@ variables:
         # Tell Symfony to always install in production-mode.
         SYMFONY_ENV: 'prod'
 
+mounts:
+    "/var/cache": "shared:files/cache"
+    "/var/logs": "shared:files/logs"
+
 # The hooks that will be performed when the package is deployed.
 hooks:
     build: |

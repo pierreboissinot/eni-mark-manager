@@ -8,7 +8,7 @@ namespace Pb\MarkManagement\Domain;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\UuidInterface;
 
-class Subject implements SubjectInterface
+final class Subject implements SubjectInterface
 {
 
     /** @var UuidInterface */

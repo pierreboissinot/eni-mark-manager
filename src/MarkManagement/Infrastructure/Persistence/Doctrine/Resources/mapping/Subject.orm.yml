@@ -16,3 +16,7 @@ Pb\MarkManagement\Domain\Subject:
             joinColumn:
                 name: domain_id
                 referencedColumnName: id
+    oneToMany:
+        marks:
+            targetEntity: Mark
+            mappedBy: subject

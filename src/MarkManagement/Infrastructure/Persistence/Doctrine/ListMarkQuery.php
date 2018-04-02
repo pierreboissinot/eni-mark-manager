@@ -30,12 +30,13 @@ final class ListMarkQuery
         $queryBuilder = $this->entityManager->createQueryBuilder()
             ->select(
                 sprintf(
-                    'NEW %s(mark.id, mark.value, mark.coefficient, mark.label, mark.student, subject.label)',
+                    'NEW %s(mark.id, mark.value, mark.coefficient, mark.label, student.lastName, subject.label)',
                     MarkList::class
                 )
             )
             ->from(Mark::class, 'mark')
             ->leftJoin('mark.subject', 'subject')
+            ->leftJoin('mark.student', 'student')
             ->getQuery();
         $marks = new Pagerfanta(new DoctrineORMAdapter($queryBuilder, true, false));
         $marks->setCurrentPage($page);

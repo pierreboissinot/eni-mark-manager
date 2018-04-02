@@ -15,16 +15,15 @@ Pb\MarkManagement\Domain\Mark:
         label:
             type: string
     manyToOne:
-        student:
-            targetEntity: Student
-            inversedBy: marks
-            joinColumn:
-                name: student_id
-                referencedColumnName: id
-    manyToOne:
         subject:
             targetEntity: Subject
             inversedBy: marks
             joinColumn:
                 name: subject_id
+                referencedColumnName: id
+        student:
+            targetEntity: Student
+            inversedBy: marks
+            joinColumn:
+                name: student_id
                 referencedColumnName: id

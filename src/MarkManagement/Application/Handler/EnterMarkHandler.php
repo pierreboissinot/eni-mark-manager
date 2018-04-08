@@ -30,7 +30,7 @@ class EnterMarkHandler
             $command->coefficient,
             $command->student,
             $command->label,
-            $command->domain
+            $command->subject
         );
         $this->markRepository->add($mark);
     }

@@ -1,0 +1,3 @@
+Pb\MarkManagement\Domain\Domain:
+  domain_{1..50}:
+      __construct: { enter: ['<word()>'] }

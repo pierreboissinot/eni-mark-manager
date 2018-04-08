@@ -39,3 +39,7 @@ services:
             - '@pb.mark.repository'
         tags:
             - { name: command_handler, handles: enter_mark }
+
+    ### Fixture loading
+    hautelook_alice.locator.env_directory:
+        class: 'Pb\MarkManagement\Infrastructure\Persistence\Doctrine\Fixtures\FileLocator'

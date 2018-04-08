@@ -33,8 +33,9 @@ class Domain implements DomainInterface
     }
 
 
-    public static function enter(UuidInterface $identifier, string $label)
+    public static function enter(string $label)
     {
+        $identifier = Uuid::uuid4();
         return new self($identifier, $label);
     }
 }

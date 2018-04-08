@@ -14,6 +14,16 @@ start:
 	${DOCKER_COMPOSE} up -d --remove-orphans --no-recreate
 	${SYMFONY} server:run
 
+migrate: vendor
+	${SYMFONY} doctrine:migrations:migrate --no-interaction --allow-no-migration
+
+# rules based on files
+composer.lock: composer.json
+    $(COMPOSER) update --lock --no-scripts --no-interaction
+
+vendor: composer.lock
+    $(COMPOSER) install
+
 
 .DEFAULT_GOAL := help
 help:

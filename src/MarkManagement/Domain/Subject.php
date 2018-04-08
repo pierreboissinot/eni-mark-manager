@@ -48,5 +48,13 @@ final class Subject implements SubjectInterface
         return $this->label;
     }
 
+    /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return $this->label;
+    }
+
 
 }

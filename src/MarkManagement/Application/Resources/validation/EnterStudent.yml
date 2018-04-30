@@ -1,0 +1,6 @@
+Pb\MarkManagement\Application\Command\EnterStudent:
+    properties:
+        lastName:
+            - NotBlank: ~
+        firstName:
+            - NotBlank: ~

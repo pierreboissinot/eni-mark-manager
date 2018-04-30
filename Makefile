@@ -12,7 +12,6 @@ COMPOSER        = $(RUN_PHP) composer
 
 start:
 	${DOCKER_COMPOSE} up -d --remove-orphans --no-recreate
-	${SYMFONY} server:run
 
 migrate: vendor
 	${SYMFONY} doctrine:migrations:migrate --no-interaction --allow-no-migration

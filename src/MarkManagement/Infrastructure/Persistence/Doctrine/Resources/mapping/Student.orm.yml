@@ -8,6 +8,8 @@ Pb\MarkManagement\Domain\Student:
                 strategy: NONE
         lastName:
             type: string
+        firstName:
+            type: string
     oneToMany:
         marks:
             targetEntity: Mark

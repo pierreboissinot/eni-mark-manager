@@ -25,8 +25,24 @@ services:
         class: 'Pb\MarkManagement\Infrastructure\Persistence\Doctrine\ListMarkQuery'
         arguments:
             - '@doctrine.orm.entity_manager'
+    
+    pb.student.query:
+        class: 'Pb\MarkManagement\Infrastructure\Persistence\Doctrine\ListStudentQuery'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+
+    pb.student.repository:
+        class: 'Pb\MarkManagement\Infrastructure\Persistence\Doctrine\StudentRepository'
+        arguments:
+            - '@doctrine.orm.entity_manager'
 
     ### Command handler
+    pb.student.handler.enter:
+        class: 'Pb\MarkManagement\Application\Handler\EnterStudentHandler'
+        arguments:
+            - '@pb.student.repository'
+        tags:
+            - { name: command_handler, handles: enter_student }
     pb.domain.handler.enter:
         class: 'Pb\MarkManagement\Application\Handler\EnterDomainHandler'
         arguments:

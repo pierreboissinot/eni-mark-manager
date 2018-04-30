@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1 class="ui dividing header">Student</h1>
+    <a href="{{ path('student_enter') }}" class="ui primary button">
+    	New Student
+    </a>
+    <table class="ui celled table">
+        <thead>
+	    <tr>
+	        <th>LastName FirstName</th>
+		<th>Results</th>
+	    </tr>
+ 	</thead>
+	<tbody>
+	{% for student in students %}
+	    <tr>
+	    	<td>{{ student.lastname ~ ' ' ~ student.firstName }}</td>
+		<td>link to results sheets list</td>
+	    </tr>
+	{% endfor %}
+	</tbody>
+    </table>
+    {{ pagerfanta(students, 'semantic_ui_translated', { 'omitFirstPage': true }) }}
+{% endblock content %}

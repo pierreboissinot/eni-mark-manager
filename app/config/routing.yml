@@ -23,3 +23,13 @@ mark_enter:
     path: /mark/enter
     defaults:
       _controller: Pb\MarkManagement\Infrastructure\UserInterface\Web\MarkController::enterAction
+
+student_list:
+    path: /student/list
+    defaults:
+      _controller: Pb\MarkManagement\Infrastructure\UserInterface\Web\StudentController::listAction
+
+student_enter:
+    path: /student/enter
+    defaults:
+      _controller: Pb\MarkManagement\Infrastructure\UserInterface\Web\StudentController::enterAction

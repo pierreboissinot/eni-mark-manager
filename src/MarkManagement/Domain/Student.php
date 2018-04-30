@@ -16,6 +16,9 @@ final class Student implements StudentInterface
     /** @var string */
     private $lastName;
 
+    /** @var string */
+    private $firstName;
+
     /** @var \ArrayAccess */
     private $marks;
 
@@ -23,13 +26,19 @@ final class Student implements StudentInterface
      * Student constructor.
      * @param Uuid $id
      * @param string $lastName
+     * @param string $firstName
      * @param \ArrayAccess $marks
      */
-    public function __construct(Uuid $id, string $lastName, \ArrayAccess $marks)
+    public function __construct(Uuid $id, string $lastName, string $firstName)
     {
         $this->id = $id;
         $this->lastName = $lastName;
-        $this->marks = $marks;
+        $this->firstName = $firstName;
+    }
+
+    public static function enter(UuidInterface $uuid4, string $lastName, string $firstName)
+    {
+        return new self($uuid4, $lastName, $firstName);
     }
 
 

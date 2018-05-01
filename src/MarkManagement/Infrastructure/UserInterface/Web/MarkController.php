@@ -5,10 +5,11 @@ namespace Pb\MarkManagement\Infrastructure\UserInterface\Web;
 use Pb\MarkManagement\Application\Command\EnterMark;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class MarkController extends Controller
 {
-    public function enterAction(Request $request)
+    public function enterAction(Request $request): Response
     {
         $form = $this->createForm(MarkType::class, new EnterMark());
         $form->handleRequest($request);
@@ -29,7 +30,7 @@ class MarkController extends Controller
         ]);
     }
 
-    public function listAction(Request $request)
+    public function listAction(Request $request): Response
     {
         $marks = $this->get('pb.mark.query')->findAll(
             (int) $request->get('page', 1),
@@ -38,6 +39,6 @@ class MarkController extends Controller
 
         return $this->render('mark/list.html.twig', [
             'marks' => $marks
-    ]);
+        ]);
     }
 }

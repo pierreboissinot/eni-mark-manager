@@ -4,10 +4,11 @@ namespace Pb\MarkManagement\Infrastructure\UserInterface\Web;
 use Pb\MarkManagement\Application\Command\EnterStudent;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class StudentController extends Controller
 {
-    public function listAction(Request $request)
+    public function listAction(Request $request): Response
     {
         $students = $this->get('pb.student.query')->findAll(
             (int) $request->get('page', 1),
@@ -18,7 +19,7 @@ class StudentController extends Controller
             ]);
     }
 
-    public function enterAction(Request $request)
+    public function enterAction(Request $request): Response
     {
         $form = $this->createForm(StudentType::class, new EnterStudent());
         $form->handleRequest($request);

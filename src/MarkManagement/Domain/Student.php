@@ -36,9 +36,11 @@ final class Student implements StudentInterface
         $this->firstName = $firstName;
     }
 
-    public static function enter(UuidInterface $uuid4, string $lastName, string $firstName)
+    public static function enter(string $lastName, string $firstName)
     {
-        return new self($uuid4, $lastName, $firstName);
+
+        $identifier = Uuid::uuid4();
+        return new self($identifier, $lastName, $firstName);
     }
 
 

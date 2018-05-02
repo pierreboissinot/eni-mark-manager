@@ -1,0 +1,3 @@
+Pb\MarkManagement\Domain\Student:
+  student_{1..30}:
+        __construct: { enter: ['<lastName()>', '<firstName()>'] }

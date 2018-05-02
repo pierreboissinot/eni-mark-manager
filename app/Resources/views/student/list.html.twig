@@ -16,7 +16,7 @@
 	{% for student in students %}
 	    <tr>
 	    	<td>{{ student.lastname ~ ' ' ~ student.firstName }}</td>
-		<td>link to results sheets list</td>
+                <td><a href="{{ path('student_academic_transcript', { id: student.id }) }}">Academic transcript</a></td>
 	    </tr>
 	{% endfor %}
 	</tbody>

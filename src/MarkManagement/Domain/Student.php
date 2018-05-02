@@ -29,7 +29,7 @@ final class Student implements StudentInterface
      * @param string $firstName
      * @param \ArrayAccess $marks
      */
-    public function __construct(Uuid $id, string $lastName, string $firstName)
+    public function __construct(string $id, string $lastName, string $firstName)
     {
         $this->id = $id;
         $this->lastName = $lastName;

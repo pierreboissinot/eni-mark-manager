@@ -33,3 +33,8 @@ student_enter:
     path: /student/enter
     defaults:
       _controller: Pb\MarkManagement\Infrastructure\UserInterface\Web\StudentController::enterAction
+
+student_academic_transcript:
+    path: /student/{id}/academic_transcript
+    defaults:
+      _controller: Pb\MarkManagement\Infrastructure\UserInterface\Web\StudentController::academicTranscriptAction

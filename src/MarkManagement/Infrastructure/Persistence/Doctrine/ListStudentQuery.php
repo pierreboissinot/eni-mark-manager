@@ -40,4 +40,5 @@ final class ListStudentQuery
         $students->setMaxPerPage($limit);
         return $students;
     }
+
 }

@@ -2,6 +2,7 @@
 namespace Pb\MarkManagement\Infrastructure\UserInterface\Web;
 
 use Pb\MarkManagement\Application\Command\EnterStudent;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,5 +38,13 @@ class StudentController extends Controller
         return $this->render('student/enter.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    public function academicTranscriptAction(Request $request, string $id): Response
+    {
+	    $student = $this->get('pb.academic_transcript.query')->find($id);
+	    return $this->render('student/academic_transcript.html.twig', [
+		    'student' => $student
+	    ]);
     }
 }

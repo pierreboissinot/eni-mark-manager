@@ -25,9 +25,14 @@ services:
         class: 'Pb\MarkManagement\Infrastructure\Persistence\Doctrine\ListMarkQuery'
         arguments:
             - '@doctrine.orm.entity_manager'
-    
+
     pb.student.query:
         class: 'Pb\MarkManagement\Infrastructure\Persistence\Doctrine\ListStudentQuery'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+
+    pb.academic_transcript.query:
+        class: 'Pb\MarkManagement\Infrastructure\Persistence\Doctrine\AcademicTranscriptQuery'
         arguments:
             - '@doctrine.orm.entity_manager'
 

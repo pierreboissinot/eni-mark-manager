@@ -25,9 +25,9 @@ class StudentRepository implements StudentRepositoryInterface
         $this->entityManager = $entityManager;
     }
 
-    public function get(Uuid $identifier)
+    public function get(string $identifier)
     {
-        // TODO: Implement get() method.
+	    return $this->entityManager->find(Student::class, $identifier);
     }
 
     public function add(StudentInterface $student)

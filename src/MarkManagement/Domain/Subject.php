@@ -6,6 +6,7 @@ namespace Pb\MarkManagement\Domain;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 final class Subject implements SubjectInterface
@@ -29,7 +30,7 @@ final class Subject implements SubjectInterface
      * @param string $label
      * @param DomainInterface $domain
      */
-    public function __construct(UuidInterface $id, string $label, DomainInterface $domain)
+    public function __construct(string $id, string $label, DomainInterface $domain)
     {
         $this->id = $id;
         $this->label = $label;
@@ -38,8 +39,9 @@ final class Subject implements SubjectInterface
     }
 
 
-    public static function enter(UuidInterface $identifier, string $label, DomainInterface $domain)
+    public static function enter(string $label, DomainInterface $domain)
     {
+        $identifier = Uuid::uuid4()->toString();
         return new self($identifier, $label, $domain);
     }
 

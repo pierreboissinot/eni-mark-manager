@@ -9,19 +9,6 @@ use Ramsey\Uuid\UuidInterface;
 interface StudentInterface
 {
     /**
-     * @param UuidInterface $identifier
-     * @param string $firstName
-     * @param string $lastName
-     * @param $marks
-     * @return mixed
-     */
-    public function enterMarks(
-        UuidInterface $identifier,
-        string $firstName,
-        string $lastName,
-        $marks);
-
-    /**
      * @param $exam
      * @return mixed
      */

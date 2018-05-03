@@ -22,15 +22,16 @@ final class FileLocator implements FixtureLocatorInterface
         $files = SymfonyFinder::create()->files()->in($path)->depth(0)->name('/.*\.(ya?ml|php)$/i');
 
         // this sort helps to set an order with filename ( "001-root-level-fixtures.yml", "002-another-level-fixtures.yml", ... )
-        $files = $files->sort(function ($a, $b) {
-            return strcasecmp($a->getFilename(), $b->getFilename());
-        });
+        //$files = $files->sort(function ($a, $b) {
+        //    return strcasecmp($a->getFileName(), $b->getFileName());
+        //});
 
         $fixtureFiles = [];
         foreach ($files as $file) {
             $fixtureFiles[] = $file->getRealPath();
         }
 
+	dump(count($fixtureFiles));
         return $fixtureFiles;
     }
 }

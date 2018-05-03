@@ -1,0 +1,3 @@
+Pb\MarkManagement\Domain\Subject:
+  subject_{0..25}:
+    __construct: { enter: ['<word()>', '@domain_<numberBetween(1,7)>']}

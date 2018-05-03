@@ -1,14 +1,15 @@
 <?php
 namespace Pb\MarkManagement\Domain\ReadModel;
 
-
 class AcademicTranscript
 {
     private $lastName;
     private $firstName;
+    private $marks;
 
-    public function __construct(string $lastName, string $firstName)
+    public function __construct($marks, string $lastName, string $firstName)
     {
+	$this->marks = $marks;
         $this->lastName = $lastName;
         $this->firstName = $firstName;
     }
@@ -48,6 +49,17 @@ class AcademicTranscript
     {
         $this->firstName = $firstName;
         return $this;
+    }
+
+    public function setMarks($marks)
+    {
+	    $this->marks = $marks;
+	    return $this;
+    }
+
+    public function getMarks()
+    {
+        return $this->marks;
     }
 
 

@@ -39,20 +39,10 @@ final class Student implements StudentInterface
     public static function enter(string $lastName, string $firstName)
     {
 
-        $identifier = Uuid::uuid4();
+	$identifier = Uuid::uuid4()->toString();
         return new self($identifier, $lastName, $firstName);
     }
 
-
-    /** @inheritdoc */
-    public function enterMarks(
-        UuidInterface $identifier,
-        string $firstName,
-        string $lastName,
-        $marks)
-    {
-        // TODO: Implement enterMarks() method.
-    }
 
     /** @inheritdoc */
     public function signInToExam($exam)

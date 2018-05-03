@@ -6,6 +6,7 @@ namespace Pb\MarkManagement\Infrastructure\Persistence\Doctrine;
 use Doctrine\ORM\EntityManagerInterface;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
+use Pb\MarkManagement\Domain\Mark;
 use Pb\MarkManagement\Domain\ReadModel\AcademicTranscript;
 use Pb\MarkManagement\Domain\ReadModel\StudentList;
 use Pb\MarkManagement\Domain\Student;
@@ -27,7 +28,7 @@ final class AcademicTranscriptQuery
 	    $queryBuilder = $this->entityManager->createQueryBuilder()
 		    ->select(
 			    sprintf(
-				    'NEW %s(student.lastName, student.firstName)',
+				    'NEW %s(mark, student.lastName, student.firstName)',
 				    AcademicTranscript::class
 			    )
 		    )
@@ -35,9 +36,11 @@ final class AcademicTranscriptQuery
 		    ->setParameters([
 			    'identifier' => $identifier
 		    ])
-		    ->from(Student::class, 'student')
+		    ->from(Mark::class, 'mark')
+		    ->leftJoin('mark.student', 'student')
 		    ->getQuery();
 	    $student = $queryBuilder->getOneOrNullResult();
+	    dump($student);die();
 	    return $student;
     }
 }

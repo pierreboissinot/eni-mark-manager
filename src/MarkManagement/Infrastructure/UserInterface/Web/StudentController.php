@@ -42,9 +42,9 @@ class StudentController extends Controller
 
     public function academicTranscriptAction(Request $request, string $id): Response
     {
-	    $student = $this->get('pb.academic_transcript.query')->find($id);
+	    $domains = $this->get('pb.academic_transcript.query')->find($id);
 	    return $this->render('student/academic_transcript.html.twig', [
-		    'student' => $student
+		    'domains' => $domains
 	    ]);
     }
 }

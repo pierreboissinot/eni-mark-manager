@@ -6,6 +6,7 @@ namespace Pb\MarkManagement\Infrastructure\Persistence\Doctrine;
 use Doctrine\ORM\EntityManagerInterface;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
+use Pb\MarkManagement\Domain\Domain;
 use Pb\MarkManagement\Domain\Mark;
 use Pb\MarkManagement\Domain\ReadModel\AcademicTranscript;
 use Pb\MarkManagement\Domain\ReadModel\StudentList;
@@ -23,24 +24,33 @@ final class AcademicTranscriptQuery
         $this->entityManager = $entityManager;
     }
 
-    public function find(string $identifier): AcademicTranscript
+    public function find(string $identifier)
     {
-	    $queryBuilder = $this->entityManager->createQueryBuilder()
+            $queryBuilder = $this->entityManager->createQueryBuilder()
 		    ->select(
 			    sprintf(
-				    'NEW %s(mark, student.lastName, student.firstName)',
+				    'NEW %s(mark.id, mark.value, mark.coefficient, subject.label, domain.label)',
 				    AcademicTranscript::class
 			    )
 		    )
+		    ->from(Domain::class, 'domain', 'domain.id')
 		    ->where('student.id = :identifier')
 		    ->setParameters([
 			    'identifier' => $identifier
 		    ])
-		    ->from(Mark::class, 'mark')
+                    ->join('domain.subjects', 'subject')
+		    ->join('subject.marks', 'mark')
 		    ->leftJoin('mark.student', 'student')
 		    ->getQuery();
-	    $student = $queryBuilder->getOneOrNullResult();
-	    dump($student);die();
-	    return $student;
+	    $result = $queryBuilder->getResult();
+	    return $this->_group_by_domain($result);
+    }
+
+    function _group_by_domain($array) {
+    $return = array();
+    foreach($array as $val) {
+        $return[$val->getDomain()][] = $val;
+    }
+      return $return;
     }
 }

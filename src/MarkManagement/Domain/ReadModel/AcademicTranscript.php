@@ -1,66 +1,82 @@
 <?php
+declare(strict_types=1);
+
 namespace Pb\MarkManagement\Domain\ReadModel;
 
-class AcademicTranscript
+// DTO
+final class AcademicTranscript
 {
-    private $lastName;
-    private $firstName;
-    private $marks;
+    /** @var string */
+    private $id;
 
-    public function __construct($marks, string $lastName, string $firstName)
+    /** @var float */
+    private $value;
+
+    /** @var int */
+    private $coefficient;
+
+    /** @var string */
+    private $student;
+
+    /** @var string */
+    private $subject;
+
+    /** @var string */
+    private $domain;
+
+    /**
+     * AcademicTranscript constructor.
+     * @param string $id
+     * @param float $value
+     * @param int $coefficient
+     * @param string $subject
+     */
+    public function __construct(string $id, float $value, int $coefficient, string $subject, string $domain)
     {
-	$this->marks = $marks;
-        $this->lastName = $lastName;
-        $this->firstName = $firstName;
+        $this->id = $id;
+        $this->value = $value;
+        $this->coefficient = $coefficient;
+        $this->subject = $subject;
+	$this->domain = $domain;
     }
-
 
     /**
      * @return string
      */
-    public function getLastName(): string
+    public function getId(): string
     {
-        return $this->lastName;
+        return $this->id;
     }
 
     /**
-     * @param string $lastName
-     * @return AcademicTranscript
+     * @return float
      */
-    public function setLastName(string $lastName): AcademicTranscript
+    public function getValue(): float
     {
-        $this->lastName = $lastName;
-        return $this;
+        return $this->value;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCoefficient(): int
+    {
+        return $this->coefficient;
     }
 
     /**
      * @return string
      */
-    public function getFirstName(): string
+    public function getSubject(): string
     {
-        return $this->firstName;
+        return $this->subject;
     }
 
     /**
-     * @param string $firstName
-     * @return AcademicTranscript
+     * @return string
      */
-    public function setFirstName(string $firstName): AcademicTranscript
+    public function getDomain(): string
     {
-        $this->firstName = $firstName;
-        return $this;
+	    return $this->domain;
     }
-
-    public function setMarks($marks)
-    {
-	    $this->marks = $marks;
-	    return $this;
-    }
-
-    public function getMarks()
-    {
-        return $this->marks;
-    }
-
-
 }

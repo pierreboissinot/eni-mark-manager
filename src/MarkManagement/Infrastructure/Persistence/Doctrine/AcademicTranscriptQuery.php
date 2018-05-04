@@ -56,13 +56,16 @@ final class AcademicTranscriptQuery
 				$carry += $item->getCoefficient();
 				return $carry;
 			}
-			);
+		);
 			$totalValue = array_reduce($domainInfos['marks'], function($carry, $item) {
 				$carry += $item->getValue();
 				return $carry;
 			});
 			$countValue = count($domainInfos['marks']);
 			$return[$domain]['average'] = $totalValue / $countValue;
+			$return[$domain]['isValid'] = count(array_filter($domainInfos['marks'], function($value, $key) {
+				return $value->getValue() < 10;
+			}, ARRAY_FILTER_USE_BOTH)) === 0;
 		}
 		return $return;
 	}

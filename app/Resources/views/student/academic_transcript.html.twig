@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+{% dump(domains) %}
 <table class="ui table">
 	<thead>
 		<tr>
@@ -12,10 +13,10 @@
 	<tbody>
 
 		{% for domain, domainInfos in domains %}
-		<tr>
-			<td class="active">{{ 'Domaine ' ~ domain }}</td>
-			<td class="active">{{ domainInfos['coefficientTotal'] }}</td>
-			<td class="active">{{ domainInfos['average'] }}</td>
+		<tr class="{%if domainInfos.isValid %}positive{% else %}negative{% endif %}">
+			<td class="">{{ 'Domaine ' ~ domain }}</td>
+			<td class="">{{ domainInfos['coefficientTotal'] }}</td>
+			<td class="">{{ domainInfos['average'] }}</td>
 		</tr>
 		{% for mark in domainInfos['marks'] %}
 		<tr class="{% if mark.value < 10 %}negative{% else %}positive{% endif %}">

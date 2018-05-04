@@ -18,7 +18,7 @@
 			<td class="active">{{ domainInfos['average'] }}</td>
 		</tr>
 		{% for mark in domainInfos['marks'] %}
-		<tr>
+		<tr class="{% if mark.value < 10 %}negative{% else %}positive{% endif %}">
 			<td>{{ mark.subject }}</td>
 			<td>{{ mark.coefficient }}</td>
 			<td>{{ mark.value }}</td>

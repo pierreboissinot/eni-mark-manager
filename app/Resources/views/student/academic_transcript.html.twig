@@ -1,26 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-	<table class="ui table">
-		<thead>
-			<tr>
-				<th>Domaine</th>
-				<th>Crédit</th>
-				<th>Résultat (/20)</th>
-			</tr>
-		</thead>
-		<tbody>
-
-    {% for domain, marks in domains %}
-	<tr><td colspan="3" class="active">{{ 'Domaine ' ~ domain }}</td></tr>
-	{% for mark in marks %}
+<table class="ui table">
+	<thead>
 		<tr>
-		<td>{{ mark.subject }}</td>
-		<td>{{ mark.coefficient }}</td>
-		<td>{{ mark.value }}</td>
+			<th>Domaine</th>
+			<th>Crédit</th>
+			<th>Résultat (/20)</th>
 		</tr>
-	{% endfor %}
-    {% endfor %}
-    </tbody>
-    </table>
+	</thead>
+	<tbody>
+
+		{% for domain, domainInfos in domains %}
+		<tr>
+			<td class="active">{{ 'Domaine ' ~ domain }}</td>
+			<td class="active">{{ domainInfos['coefficientTotal'] }}</td>
+			<td class="active">{{ domainInfos['average'] }}</td>
+		</tr>
+		{% for mark in domainInfos['marks'] %}
+		<tr>
+			<td>{{ mark.subject }}</td>
+			<td>{{ mark.coefficient }}</td>
+			<td>{{ mark.value }}</td>
+		</tr>
+		{% endfor %}
+		{% endfor %}
+	</tbody>
+</table>
 {% endblock content %}

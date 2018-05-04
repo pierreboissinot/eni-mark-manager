@@ -17,3 +17,4 @@
 /web/bundles/
 /.idea
 /phpunit.xml.dist
+/node_modules

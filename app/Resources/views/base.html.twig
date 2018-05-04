@@ -3,7 +3,9 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Gestionnaire de notes{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset("/build/app.css") }}" media="screen">
+	{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
         <style>
@@ -32,6 +34,8 @@
         {% block content %}{% endblock %}
         </div>
         {% include "./footer.html.twig"%}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+	<script type="text/javascript" src="{{ asset("/build/app.js") }}"></script>
+	{% endblock %}
     </body>
 </html>

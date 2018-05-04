@@ -23,6 +23,16 @@ composer.lock: composer.json
 vendor: composer.lock
 	$(COMPOSER) install
 
+fixtures:
+	cd ~/workspace/docker-symfony
+	$(DOCKER_COMPOSE) exec php php /var/www/symfony/bin/console doctrine:fixtures:load
+	cd ~/workspace/eni-mark-manager
+
+assets:
+	$(DOCKER_COMPOSE) run --rm node yarn run encore dev
+
+watch:
+	$(DOCKER_COMPOSE) run --rm node yarn run encore dev --watch
 
 .DEFAULT_GOAL := help
 help:

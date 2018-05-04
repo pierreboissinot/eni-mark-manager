@@ -6,23 +6,23 @@
 	<thead>
 		<tr>
 			<th>Domaine</th>
-			<th>Crédit</th>
-			<th>Résultat (/20)</th>
+			<th class="right aligned">Crédit</th>
+			<th class="right aligned">Résultat (/20)</th>
 		</tr>
 	</thead>
 	<tbody>
 
 		{% for domain, domainInfos in domains %}
-		<tr class="{%if domainInfos.isValid %}positive{% else %}negative{% endif %}">
+		<tr class="domain {%if domainInfos.isValid %}positive{% else %}negative{% endif %}">
 			<td class="">{{ 'Domaine ' ~ domain }}</td>
-			<td class="">{{ domainInfos['coefficientTotal'] }}</td>
-			<td class="">{{ domainInfos['average'] }}</td>
+			<td class="right aligned">{{ domainInfos['coefficientTotal'] }}</td>
+			<td class="right aligned">{{ domainInfos['average'] }}</td>
 		</tr>
 		{% for mark in domainInfos['marks'] %}
-		<tr class="{% if mark.value < 10 %}negative{% else %}positive{% endif %}">
+		<tr>
 			<td>{{ mark.subject }}</td>
-			<td>{{ mark.coefficient }}</td>
-			<td>{{ mark.value }}</td>
+			<td class="right aligned">{{ mark.coefficient }}</td>
+			<td class="right aligned {% if mark.value < 10 %}negative{% else %}positive{% endif %}">{{ mark.value }}</td>
 		</tr>
 		{% endfor %}
 		{% endfor %}

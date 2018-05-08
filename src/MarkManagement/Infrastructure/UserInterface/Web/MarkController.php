@@ -2,6 +2,7 @@
 
 namespace Pb\MarkManagement\Infrastructure\UserInterface\Web;
 
+use Pb\MarkManagement\Application\Command\EditMark;
 use Pb\MarkManagement\Application\Command\EnterMark;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,6 +40,24 @@ class MarkController extends Controller
 
         return $this->render('mark/list.html.twig', [
             'marks' => $marks
+        ]);
+    }
+
+    public function editAction(Request $request, $id): Response
+    {
+        $form = $this->createForm(MarkType::class, new EditMark($id));
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $markCommand = $form->getData();
+            try {
+                $this->get('command_bus')->handle($markCommand);
+            } catch (\Exception $e) {
+                $this->addFlash('error', $e->getMessage());
+            }
+        }
+
+        return $this->render('mark/edit.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 }

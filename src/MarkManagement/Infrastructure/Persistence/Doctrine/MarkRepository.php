@@ -23,18 +23,18 @@ class MarkRepository implements MarkRepositoryInterface
     }
 
     /**
-     * @param Uuid $identifier
+     * @param string $identifier
      * @return Mark|object
      * @throws NonExistingMark
      */
-    public function get(Uuid $identifier)
+    public function get(string $identifier)
     {
         $mark = $this->entityManager->find(
             Mark::class,
-            $identifier->toString()
+            $identifier
         );
         if (null === $mark) {
-            throw new NonExistingMark($identifier->toString());
+            throw new NonExistingMark($identifier);
         }
 
         return $mark;
@@ -44,6 +44,12 @@ class MarkRepository implements MarkRepositoryInterface
     {
         $this->entityManager->persist($mark);
         $this->entityManager->flush();
+    }
+
+    public function edit(MarkInterface $mark)
+    {
+	    $this->entityManager->persist($mark);
+	    $this->entityManager->flush();
     }
 
     public function remove(MarkInterface $mark)

@@ -7,10 +7,10 @@
 			<th>Domaine</th>
 			<th class="right aligned">Crédit</th>
 			<th class="right aligned">Résultat (/20)</th>
+			<th class="left aligned">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
-
 		{% for domain, domainInfos in domains %}
 		<tr class="domain {%if domainInfos.isValid %}positive{% else %}negative{% endif %}">
 			<td class="">{{ 'Domaine ' ~ domain }}</td>
@@ -22,6 +22,7 @@
 			<td>{{ mark.subject }}</td>
 			<td class="right aligned">{{ mark.coefficient }}</td>
 			<td class="right aligned {% if mark.value < 10 %}negative{% else %}positive{% endif %}">{{ mark.value }}</td>
+			<td class="left aligned"><a href="{{ path('mark_edit', { id: mark.id }) }}">Modifier</a></td>
 		</tr>
 		{% endfor %}
 		{% endfor %}

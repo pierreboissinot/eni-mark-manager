@@ -7,7 +7,7 @@ namespace Pb\MarkManagement\Domain;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-final class Student implements StudentInterface
+class Student implements StudentInterface
 {
 
     /** @var Uuid */

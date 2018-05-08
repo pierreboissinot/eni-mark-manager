@@ -60,6 +60,12 @@ services:
             - '@pb.mark.repository'
         tags:
             - { name: command_handler, handles: enter_mark }
+    pb.mark.handler.edit:
+        class: 'Pb\MarkManagement\Application\Handler\EditMarkHandler'
+        arguments:
+            - '@pb.mark.repository'
+        tags:
+            - { name: command_handler, handles: edit_mark }
 
     ### Fixture loading
     hautelook_alice.locator.env_directory:

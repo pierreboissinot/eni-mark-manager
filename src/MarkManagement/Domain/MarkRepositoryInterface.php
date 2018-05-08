@@ -8,7 +8,7 @@ use Ramsey\Uuid\Uuid;
 
 interface MarkRepositoryInterface
 {
-    public function get(Uuid $identifier);
+    public function get(string $identifier);
 
     public function add(MarkInterface $mark);
 

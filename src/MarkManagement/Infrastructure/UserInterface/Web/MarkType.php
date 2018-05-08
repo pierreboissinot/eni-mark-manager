@@ -4,6 +4,7 @@
 namespace Pb\MarkManagement\Infrastructure\UserInterface\Web;
 
 use Doctrine\ORM\EntityRepository;
+use Pb\MarkManagement\Application\Command\EditMark;
 use Pb\MarkManagement\Application\Command\EnterMark;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -32,6 +33,11 @@ class MarkType extends AbstractType
                     }
                 ]);
                 $form->add('label');
+            }
+
+            if ($mark instanceof EditMark) {
+                $form = $event->getForm();
+                $form->add('value');
             }
         });
     }

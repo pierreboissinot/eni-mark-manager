@@ -53,8 +53,8 @@ final class Mark implements MarkInterface
     /**
      * @inheritdoc
      */
-    public function edit(UuidInterface $identifier, float $value)
+    public function edit(float $value)
     {
-        // TODO: Implement edit() method.
+        $this->value = $value;
     }
 }

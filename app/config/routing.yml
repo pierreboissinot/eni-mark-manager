@@ -24,6 +24,11 @@ mark_enter:
     defaults:
       _controller: Pb\MarkManagement\Infrastructure\UserInterface\Web\MarkController::enterAction
 
+mark_edit:
+    path: /mark/{id}/edit
+    defaults:
+      _controller: Pb\MarkManagement\Infrastructure\UserInterface\Web\MarkController::editAction
+
 student_list:
     path: /student/list
     defaults:

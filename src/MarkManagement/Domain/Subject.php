@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-final class Subject implements SubjectInterface
+class Subject implements SubjectInterface
 {
 
     /** @var UuidInterface */

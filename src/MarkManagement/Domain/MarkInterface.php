@@ -21,9 +21,8 @@ interface MarkInterface
 
     /**
      * Editer une note
-     * @param UuidInterface $identifier
      * @param float $value
      * @return mixed
      */
-    public function edit(UuidInterface $identifier, float $value);
+    public function edit(float $value);
 }
